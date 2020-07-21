@@ -1,20 +1,37 @@
 package stormtechio.handshake.repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
 
+import stormtechio.handshake.database.DBConnection;
 import stormtechio.handshake.model.Contact;
 
 public class ContactRepository {
 
 	public boolean invite(String body) {
-		// TODO Auto-generated method stub
+	
 		JSONObject postBody =  new JSONObject(body);
 		String fromAddress = postBody.getString("fromAddress");
 		String toAddress = postBody.getString("toAddress");
 		
-		// INSERT INTO INVITATIONS TABLE
+		String sql = "INSERT INTO invitation (,) VALUES (?,?)";
+		Connection connection = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(0, fromAddress);
+			statement.setString(1, toAddress);
+			
+			return statement.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return false;
 	}
