@@ -1,5 +1,7 @@
 package stormtechio.handshake.interfaces;
 
+import java.util.ArrayList;
+
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +15,7 @@ import stormtechio.handshake.model.User;
 public interface UserInterface {
 	
 	@PostMapping("user/create")
-	default JSONObject addUser(@RequestBody String body) {
+	default String addUser(@RequestBody String body) {
 		
 		
 		UserController userController = new UserController();
@@ -28,17 +30,18 @@ public interface UserInterface {
 		
 		
 		if(userController.addUser(user)) {
-			return new JSONObject().put("response",200);
+			return new JSONObject().put("response",200).toString();
 		}else {
-			return new JSONObject().put("response",500);
+			return new JSONObject().put("response",500).toString();
 		}
 		
 	}
 	
 	@GetMapping("user/all")
-	default String getUsers() {
-			
-		return "a list of users";
+	default ArrayList<User> getUsers() {
 		
+		UserController userController = new UserController();
+		return userController.getUsers(); 
+	
 	}
 }

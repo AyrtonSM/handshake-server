@@ -1,5 +1,7 @@
 package stormtechio.handshake.service;
 
+import java.util.ArrayList;
+
 import stormtechio.handshake.model.User;
 import stormtechio.handshake.repository.UserRepository;
 
@@ -19,7 +21,13 @@ public class UserService {
 		}
 		
 		return this.userRepository.addUser(user);
-		
+	
+	}
+
+
+	public ArrayList<User> getUsers() {
+		return this.userRepository.getUsers();
+
 	}
 
 }

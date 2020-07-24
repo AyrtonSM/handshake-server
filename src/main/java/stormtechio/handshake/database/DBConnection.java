@@ -10,25 +10,28 @@ public class DBConnection {
 	
 	public static Connection getConnection() {
 		
-		if(connection == null) {	
-			String url = "jdbc:mysql://localhost/handshake";
-			String user = "root";
-			String password = "";
-			
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				connection = DriverManager.getConnection(url, user, password);
-				
-			} catch(SQLException e){
-				
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		if(connection != null) {
+			return connection;
 		}
 		
-
+		String url = "jdbc:mysql://localhost/handshake?useTimezone=true&serverTimezone=UTC";
+		String user = "root";
+		String password = "";
+		
+		try {
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection(url, user, password);
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+			
 		return connection;
+			
+
 	}
 	
 }
