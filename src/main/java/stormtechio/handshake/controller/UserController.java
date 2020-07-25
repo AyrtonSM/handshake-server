@@ -19,4 +19,13 @@ public class UserController {
 	public ArrayList<User> getUsers() {	
 		return this.userService.getUsers();
 	}
+	
+	public boolean deleteUserById(int id) {
+		return this.userService.deleteUserById(id);
+	}
+
+	public User getUserById(int id) {
+		// TODO Auto-generated method stub
+		return this.userService.getUserById(id);
+	}
 }

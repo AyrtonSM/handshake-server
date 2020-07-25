@@ -29,5 +29,14 @@ public class UserService {
 		return this.userRepository.getUsers();
 
 	}
+	
+	public boolean deleteUserById(int id) {
+		return this.userRepository.deleleUserById(id);
+	}
+
+
+	public User getUserById(int id) {
+		return this.userRepository.getUserById(id);
+	}
 
 }
